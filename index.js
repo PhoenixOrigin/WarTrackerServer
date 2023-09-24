@@ -16,7 +16,7 @@ await client.connect();
 
 app.post('/war', async (req, res) => {
     const query = {
-        text: "INSERT INTO wars (uuid, war_members, territory_name, territory_owner, start, start_tower, end_tower) VALUES($1, $2, $3, $4, $5, ROW($6, $6, $7, $8, $9), ROW($10, $11, $12, $13, $14))",
+        text: "INSERT INTO wars (uuid, war_members, territory_name, territory_owner, start, start_tower, end_tower, timestamp) VALUES($1, $2, $3, $4, $5, ROW($6, $6, $7, $8, $9), ROW($10, $11, $12, $13, $14), to_timestamp($15  / 1000.0))",
         values: [
             req.header("X-Minecraft-UUID"),
             req.body.warMembersUUID,
@@ -32,7 +32,8 @@ app.post('/war', async (req, res) => {
             req.body.end.defense,
             req.body.end.attack_low,
             req.body.end.attack_high,
-            req.body.end.attack_speed
+            req.body.end.attack_speed,
+            Date.now()
         ]
     };
 

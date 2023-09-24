@@ -15,6 +15,7 @@ CREATE TABLE wars (
     territory_owner TEXT,
     start BIGINT,
     start_tower TOWER,
-    end_tower TOWER
+    end_tower TOWER,
+    timestamp timestamp
 );
 ```
